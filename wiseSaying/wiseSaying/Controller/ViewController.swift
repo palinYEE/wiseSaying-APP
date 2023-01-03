@@ -24,8 +24,14 @@ class ViewController: UIViewController {
         self.title = "wiseSaying"
         
     }
+    
+    // 데이터 추가 버튼
     @IBAction func wiseSayingPlus(_ sender: Any) {
         performSegue(withIdentifier: "detailWiseSaying", sender: nil)
+    }
+    
+    // 데이터 삭제 버튼
+    @IBAction func wiseSayingDelete(_ sender: Any) {
     }
     
     override func viewDidLoad() {
