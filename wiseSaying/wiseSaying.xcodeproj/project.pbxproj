@@ -101,12 +101,12 @@
 		6460A01829610D4C00260802 /* wiseSaying */ = {
 			isa = PBXGroup;
 			children = (
+				64D52E1B29644BEA00CFB0AC /* View */,
+				64D52E1A29644BC600CFB0AC /* Controller */,
+				64D52E1929644BBF00CFB0AC /* Model */,
 				6460A01929610D4C00260802 /* AppDelegate.swift */,
 				6460A01B29610D4C00260802 /* SceneDelegate.swift */,
-				6460A01D29610D4C00260802 /* ViewController.swift */,
-				6460A01F29610D4C00260802 /* Main.storyboard */,
 				6460A02529610D4D00260802 /* Assets.xcassets */,
-				6460A02729610D4D00260802 /* LaunchScreen.storyboard */,
 				6460A02A29610D4D00260802 /* Info.plist */,
 				6460A02229610D4C00260802 /* wiseSaying.xcdatamodeld */,
 			);
@@ -128,6 +128,30 @@
 				6460A03F29610D4D00260802 /* wiseSayingUITestsLaunchTests.swift */,
 			);
 			path = wiseSayingUITests;
+			sourceTree = "<group>";
+		};
+		64D52E1929644BBF00CFB0AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		64D52E1A29644BC600CFB0AC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6460A01D29610D4C00260802 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		64D52E1B29644BEA00CFB0AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6460A01F29610D4C00260802 /* Main.storyboard */,
+				6460A02729610D4D00260802 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
