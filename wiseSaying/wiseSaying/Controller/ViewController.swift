@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var wiseSayingTableView: UITableView!
     
     private func tableViewSetting() {
@@ -16,13 +16,8 @@ class ViewController: UIViewController {
         self.wiseSayingTableView.delegate = self
     }
     
-    private func backgroundViewImageSetting() {
-        // main view 에서 백그라운드 이미지 셋팅하는 함수 추가 필요
-    }
-    
     private func navigationBarSetting() {
         self.title = "wiseSaying"
-        
     }
     
     // 데이터 추가 버튼
@@ -34,9 +29,12 @@ class ViewController: UIViewController {
     @IBAction func wiseSayingDelete(_ sender: Any) {
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.wiseSayingTableView.reloadData()
+        wiseDataClass().mainDataDetail()    /* Debug */
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.backgroundViewImageSetting()
         navigationBarSetting()
         tableViewSetting()
         // Do any additional setup after loading the view.
@@ -45,7 +43,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
