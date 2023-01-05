@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var wiseSayingTableView: UITableView!
-    
+    var mainDatas: [NSManagedObject] = []
     private func tableViewSetting() {
         self.wiseSayingTableView.dataSource = self
         self.wiseSayingTableView.delegate = self
@@ -31,7 +32,12 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.wiseSayingTableView.reloadData()
-        wiseDataClass().mainDataDetail()    /* Debug */
+        do {
+            let loadDatas: [NSManagedObject] = try readCoreData()!
+            mainDatas = loadDatas
+        } catch {
+            print(error)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +49,15 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return mainDatas.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "wishSayingTableViewCell", for: indexPath) as! wishSayingTableViewCell
+        cell.author.text = mainDatas[indexPath.row].value(forKey: "author") as? String
+        cell.body.text = mainDatas[indexPath.row].value(forKey: "body") as? String
+        let date = mainDatas[indexPath.row].value(forKey: "date") as? Date
+        cell.dateString.text = convert(date: date!)
         return cell
     }
     

@@ -58,6 +58,11 @@
                                                 <constraint firstItem="XEd-Xw-aXl" firstAttribute="top" secondItem="KL4-y4-TkX" secondAttribute="top" constant="10" id="g1J-xZ-ZJw"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="author" destination="xnj-PZ-SuO" id="vF8-5W-Bb6"/>
+                                            <outlet property="body" destination="XEd-Xw-aXl" id="BZE-l2-rIS"/>
+                                            <outlet property="dateString" destination="f7d-s8-aoT" id="aBO-T0-qBJ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

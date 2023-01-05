@@ -124,8 +124,8 @@
 				6460A01929610D4C00260802 /* AppDelegate.swift */,
 				6460A01B29610D4C00260802 /* SceneDelegate.swift */,
 				6460A02529610D4D00260802 /* Assets.xcassets */,
-				6460A02A29610D4D00260802 /* Info.plist */,
 				6460A02229610D4C00260802 /* wiseSaying.xcdatamodeld */,
+				6460A02A29610D4D00260802 /* Info.plist */,
 			);
 			path = wiseSaying;
 			sourceTree = "<group>";
