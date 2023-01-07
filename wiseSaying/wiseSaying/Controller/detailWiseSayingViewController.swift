@@ -22,13 +22,14 @@ class detailWiseSayingViewController: UIViewController {
             
         // managedContext 내부에 있는 entity 호출
         let entity = NSEntityDescription.entity(forEntityName: "UserData", in: managedContext)!
-            
+        
         // entity 객체 생성
         let object = NSManagedObject(entity: entity, insertInto: managedContext)
-        object.setValue(bodyField ?? "", forKey: "body")
-        object.setValue(authorField ?? "", forKey: "author")
+        object.setValue(bodyField.text ?? "", forKey: "body")
+        object.setValue(authorField.text ?? "", forKey: "author")
         object.setValue(UUID(), forKey: "uuid")
         object.setValue(Date(), forKey: "date")
+        
         do {
             try managedContext.save()
         } catch let error as NSError {

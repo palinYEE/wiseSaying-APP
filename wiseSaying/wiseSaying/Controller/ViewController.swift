@@ -11,7 +11,10 @@ import CoreData
 class ViewController: UIViewController {
     
     @IBOutlet weak var wiseSayingTableView: UITableView!
+    
     var mainDatas: [NSManagedObject] = []
+    var deleteDatas: [NSManagedObject] = []
+    
     private func tableViewSetting() {
         self.wiseSayingTableView.dataSource = self
         self.wiseSayingTableView.delegate = self
@@ -28,13 +31,18 @@ class ViewController: UIViewController {
     
     // 데이터 삭제 버튼
     @IBAction func wiseSayingDelete(_ sender: Any) {
+        if wiseSayingTableView.isEditing {
+            wiseSayingTableView.setEditing(false, animated: true)
+        } else {
+            wiseSayingTableView.setEditing(true, animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.wiseSayingTableView.reloadData()
         do {
             let loadDatas: [NSManagedObject] = try readCoreData()!
-            mainDatas = loadDatas
+            self.mainDatas = loadDatas
+            self.wiseSayingTableView.reloadData()
         } catch {
             print(error)
         }
@@ -58,8 +66,41 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.body.text = mainDatas[indexPath.row].value(forKey: "body") as? String
         let date = mainDatas[indexPath.row].value(forKey: "date") as? Date
         cell.dateString.text = convert(date: date!)
+        
+        if self.isEditing {
+             self.wiseSayingTableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.none)
+        }
+
         return cell
     }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        self.wiseSayingTableView.setEditing(editing, animated: true)
+
+        self.wiseSayingTableView.reloadData()
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.isEditing{
+            print(indexPath.row, mainDatas[indexPath.row])
+        } else {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            print(indexPath.row, mainDatas[indexPath.row])
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.init(rawValue: 3)!
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+      return true
+    }
+
 }
