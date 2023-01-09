@@ -35,3 +35,14 @@ func readCoreData() throws -> [NSManagedObject]? {
         throw error
     }
 }
+
+func Output_Alert(vs: ViewController ,title : String, message : String) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+    let okButton = UIAlertAction(title: "확인", style: .default) { (action) in
+        /* 데이터 삭제 함수 추가 필요 */
+    }
+    let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+    alertController.addAction(cancel)
+    alertController.addAction(okButton)
+    return vs.present(alertController, animated: true, completion: nil)
+}
