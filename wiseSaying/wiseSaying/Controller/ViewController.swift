@@ -73,6 +73,17 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "detailWiseSaying", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailWiseSaying" {
+            let vc = segue.destination as! showDetailWishSayingViewController
+            let indexPath = sender as! IndexPath
+            let date = mainDatas[indexPath.row].value(forKey: "date") as? Date
+            vc.senderDateString = convert(date: date!)
+            vc.senderAuthor = (mainDatas[indexPath.row].value(forKey: "author") as? String)!
+            vc.senderBody = (mainDatas[indexPath.row].value(forKey: "body") as? String)!
+        }
+    }
+    
     // 데이터 삭제 버튼
     @IBAction func wiseSayingDelete(_ sender: Any) {
         if wiseSayingTableView.isEditing {
@@ -133,6 +144,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             self.bottomButton?.firstItem?.setTitle("\(deleteDatas.count)개 선택하였습니다.", for: .normal)
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "showDetailWiseSaying", sender: indexPath)
         }
     }
     
