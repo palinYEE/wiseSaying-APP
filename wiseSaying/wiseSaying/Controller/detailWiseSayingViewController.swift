@@ -13,6 +13,11 @@ class detailWiseSayingViewController: UIViewController {
     @IBOutlet weak var authorField: UITextField!
     @IBOutlet weak var bodyField: UITextField!
     
+    /* 화면 터치시 키보드가 내려가게 */
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func finishButton(_ sender: Any) {
         // App Delegate 호출
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
