@@ -87,6 +87,7 @@ class ViewController: UIViewController {
     // 데이터 삭제 버튼
     @IBAction func wiseSayingDelete(_ sender: Any) {
         if wiseSayingTableView.isEditing {
+            wiseSayingTableView.reloadData()
             self.hideButton()
             wiseSayingTableView.setEditing(false, animated: true)
         } else {

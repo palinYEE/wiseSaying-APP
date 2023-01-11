@@ -165,6 +165,7 @@
                         <viewLayoutGuide key="safeArea" id="7Ze-18-OeI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="7Ze-18-OeI" firstAttribute="bottom" secondItem="d5A-aD-1pY" secondAttribute="bottom" constant="84.329999999999998" id="4ep-h0-s9y"/>
                             <constraint firstItem="d5A-aD-1pY" firstAttribute="leading" secondItem="JLr-nz-9A6" secondAttribute="trailing" constant="20" id="5ww-T5-LfS"/>
                             <constraint firstItem="7Ze-18-OeI" firstAttribute="trailing" secondItem="d5A-aD-1pY" secondAttribute="trailing" constant="20" id="824-Bv-PD1"/>
                             <constraint firstItem="AJ1-ZP-zT4" firstAttribute="leading" secondItem="7Ze-18-OeI" secondAttribute="leading" constant="20" id="EAL-Zr-sFr"/>
@@ -172,7 +173,6 @@
                             <constraint firstItem="Jny-Yc-Uwy" firstAttribute="leading" secondItem="7Ze-18-OeI" secondAttribute="leading" constant="20" id="MiW-ub-TS4"/>
                             <constraint firstItem="74o-Wz-vUc" firstAttribute="top" secondItem="Jny-Yc-Uwy" secondAttribute="bottom" constant="20" id="VFi-xA-9rQ"/>
                             <constraint firstItem="JLr-nz-9A6" firstAttribute="top" secondItem="AJ1-ZP-zT4" secondAttribute="bottom" constant="20" id="VoV-bc-MUG"/>
-                            <constraint firstItem="d5A-aD-1pY" firstAttribute="top" secondItem="74o-Wz-vUc" secondAttribute="bottom" constant="20" id="Woc-KY-SKt"/>
                             <constraint firstItem="AJ1-ZP-zT4" firstAttribute="top" secondItem="Jny-Yc-Uwy" secondAttribute="bottom" constant="20" id="aXK-TD-ysA"/>
                             <constraint firstItem="74o-Wz-vUc" firstAttribute="leading" secondItem="AJ1-ZP-zT4" secondAttribute="trailing" constant="20" id="bOl-kh-cdJ"/>
                             <constraint firstItem="7Ze-18-OeI" firstAttribute="trailing" secondItem="Jny-Yc-Uwy" secondAttribute="trailing" constant="20" id="nHX-pK-0Cs"/>
@@ -199,7 +199,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="명언을 입력해 주세요" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rXD-74-WHJ">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="명언을 입력해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rXD-74-WHJ">
                                 <rect key="frame" x="20" y="153" width="353" height="511"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -214,7 +214,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsf-pk-gdf">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="명언 저자를 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsf-pk-gdf">
                                 <rect key="frame" x="144" y="684" width="229" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="CTB-bw-qVV"/>
