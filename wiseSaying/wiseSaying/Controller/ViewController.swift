@@ -37,13 +37,32 @@ class ViewController: UIViewController {
         hideButton()
     }
     
+    func Output_Alert(title : String, message : String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "확인", style: .default) { (_) in
+            /* 데이터 삭제 함수 추가 필요 */
+            deleteCoreData(datasList: self.deleteDatas)
+            if self.deleteDatas.count > 0 {
+                for deleteData in self.deleteDatas {
+                    self.mainDatas.removeAll { ($0.value(forKey: "uuid") as? UUID) ==  (deleteData.value(forKey: "uuid") as? UUID)}
+                }
+            }
+            self.wiseSayingTableView.reloadData()
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alertController.addAction(cancel)
+        alertController.addAction(okButton)
+        return self.present(alertController, animated: true, completion: nil)
+    }
+
 
     
     @objc func deleteData(){
         if deleteDatas.isEmpty {
-            Output_Alert(vs: self, title: "경고", message: "선택한 데이터가 없습니다.")
+            Output_Alert(title: "경고", message: "선택한 데이터가 없습니다.")
         } else {
-            Output_Alert(vs: self, title: "경고", message: "\(deleteDatas.count)개 데이터를 삭제하시겠습니까?")
+            Output_Alert(title: "경고", message: "\(deleteDatas.count)개 데이터를 삭제하시겠습니까?")
         }
     }
     
@@ -87,10 +106,14 @@ class ViewController: UIViewController {
     // 데이터 삭제 버튼
     @IBAction func wiseSayingDelete(_ sender: Any) {
         if wiseSayingTableView.isEditing {
+
             wiseSayingTableView.reloadData()
             self.hideButton()
             wiseSayingTableView.setEditing(false, animated: true)
         } else {
+            self.deleteDatas.removeAll()
+            self.bottomButton?.firstItem?.setTitle("삭제할 데이터를 선택해 주세요.", for:.normal)
+            wiseSayingTableView.reloadData()
             self.showButton()
             wiseSayingTableView.setEditing(true, animated: true)
         }

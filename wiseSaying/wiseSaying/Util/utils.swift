@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+
 func convert(date: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -36,13 +37,26 @@ func readCoreData() throws -> [NSManagedObject]? {
     }
 }
 
-func Output_Alert(vs: ViewController ,title : String, message : String) {
-    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-    let okButton = UIAlertAction(title: "확인", style: .default) { (action) in
-        /* 데이터 삭제 함수 추가 필요 */
+
+func deleteCoreData(datasList: [NSManagedObject]) {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "UserData")
+    
+    do {
+        for datas in datasList{
+            fetchRequest.predicate = NSPredicate(format: "uuid = %@", datas.value(forKey: "uuid") as! CVarArg)
+            let test = try managedContext.fetch(fetchRequest)
+            let objectToDelete = test[0] as! NSManagedObject
+            managedContext.delete(objectToDelete)
+            do {
+                try managedContext.save()
+            } catch {
+                print(error)
+            }
+        }
+    } catch {
+        print(error)
     }
-    let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-    alertController.addAction(cancel)
-    alertController.addAction(okButton)
-    return vs.present(alertController, animated: true, completion: nil)
 }
+
