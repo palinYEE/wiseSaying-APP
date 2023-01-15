@@ -10,18 +10,20 @@ import CoreData
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var wiseSayingTableView: UITableView!
-    var bottomButton: NSLayoutConstraint?  // 버튼 관련 클래스 호출
+    @IBOutlet weak var wiseSayingTableView: UITableView!    // TableView 객체
+    var bottomButton: NSLayoutConstraint?                   // 데이터 삭제 확인 버튼 객체
+    var mainDatas: [NSManagedObject] = []                   // 데이터 저장 Array
+    var deleteDatas: [NSManagedObject] = []                 // 삭제할 데이터 저장 Array
     
     /**
-     버튼 셋팅
+    네비게이션 바의 왼쪽 상단 삭제 버튼 클릭 시 삭제 버튼 생성 함수.삭제할 데이터를 선택 하지 않았을 경우 "삭제할 데이터를 선택해 주세요." 문구가 나오고, 데이터를 선택했을 경우 선택한 데이터 개수가 문구로 나온다. 해당 버튼을 클릭시 경고 문구가 출력되면서 확인 버튼을 누르면 데이터를 삭제한다.
      */
     func makeButton() {
         let button = UIButton()
         button.setTitle("삭제할 데이터를 선택해 주세요.", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .systemBlue
-        button.addTarget(self, action: #selector(deleteData), for: .touchUpInside)
+        button.addTarget(self, action: #selector(deleteDataFunc), for: .touchUpInside)
         
         self.view.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -37,14 +39,28 @@ class ViewController: UIViewController {
         hideButton()
     }
     
+    func showButton() {
+        bottomButton?.constant = 0
+    }
+    
+    func hideButton() {
+        bottomButton?.constant = 100
+    }
+    
+    /**
+     데이터 삭제 버튼 클릭 시 나오는 경고 문구 함수
+     - Parameters:
+        - title: String 변수로 경고 문구의 title 데이터
+        - message: String 변수로 경고 문구의 body 데이터
+     */
     func Output_Alert(title : String, message : String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         let okButton = UIAlertAction(title: "확인", style: .default) { (_) in
             /* 데이터 삭제 함수 추가 필요 */
             deleteCoreData(datasList: self.deleteDatas)
             if self.deleteDatas.count > 0 {
-                for deleteData in self.deleteDatas {
-                    self.mainDatas.removeAll { ($0.value(forKey: "uuid") as? UUID) ==  (deleteData.value(forKey: "uuid") as? UUID)}
+                for data in self.deleteDatas {
+                    self.mainDatas.removeAll { ($0.value(forKey: "uuid") as? UUID) ==  (data.value(forKey: "uuid") as? UUID)}
                 }
             }
             self.wiseSayingTableView.reloadData()
@@ -55,10 +71,11 @@ class ViewController: UIViewController {
         alertController.addAction(okButton)
         return self.present(alertController, animated: true, completion: nil)
     }
-
-
     
-    @objc func deleteData(){
+    /**
+    경고 문구를 나타나게 하는 함수
+     */
+    @objc func deleteDataFunc(){
         if deleteDatas.isEmpty {
             Output_Alert(title: "경고", message: "선택한 데이터가 없습니다.")
         } else {
@@ -66,32 +83,31 @@ class ViewController: UIViewController {
         }
     }
     
-    func showButton() {
-        bottomButton?.constant = 0
-    }
-    
-    func hideButton() {
-        bottomButton?.constant = 100
-    }
-
-    
-    var mainDatas: [NSManagedObject] = []
-    var deleteDatas: [NSManagedObject] = []
-    
+    /**
+     UiTableView의 dataSource, delegate  객체를 선언하는 함수
+     */
     private func tableViewSetting() {
         self.wiseSayingTableView.dataSource = self
         self.wiseSayingTableView.delegate = self
     }
     
+    /**
+     네이게이션 바 title 셋팅 함수
+     */
     private func navigationBarSetting() {
         self.title = "wiseSaying"
     }
     
-    // 데이터 추가 버튼
+    /**
+     네비게이션 바에서 + 버튼 클릭시 입력 화면이 뜨는 Controller으로 넘어가는 함수
+     */
     @IBAction func wiseSayingPlus(_ sender: Any) {
         performSegue(withIdentifier: "detailWiseSaying", sender: nil)
     }
     
+    /**
+    Segue 에 데이터를 넘겨주는 함수
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailWiseSaying" {
             let vc = segue.destination as! showDetailWishSayingViewController
@@ -103,10 +119,11 @@ class ViewController: UIViewController {
         }
     }
     
-    // 데이터 삭제 버튼
+    /**
+     네비게이션바에서 삭제 버튼 클릭시 변환 로직 구현 함수
+     */
     @IBAction func wiseSayingDelete(_ sender: Any) {
         if wiseSayingTableView.isEditing {
-
             wiseSayingTableView.reloadData()
             self.hideButton()
             wiseSayingTableView.setEditing(false, animated: true)

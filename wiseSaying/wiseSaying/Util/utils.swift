@@ -8,13 +8,21 @@
 import UIKit
 import CoreData
 
-
+/**
+ 날짜 변환 함수
+ - Parameter date: Date 형식의 데이터
+ - Returns: "yyyy-MM-dd HH:mm:ss" 형식의 문자열 데이터
+ */
 func convert(date: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     return formatter.string(from: date)
 }
 
+/**
+ CoreData 에서 데이터를 읽는 함수
+ - Returns:[NSManagedObject] 데이터 객체
+ */
 func readCoreData() throws -> [NSManagedObject]? {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
     let managedContext = appDelegate.persistentContainer.viewContext
@@ -37,7 +45,10 @@ func readCoreData() throws -> [NSManagedObject]? {
     }
 }
 
-
+/**
+ CoreData 에서 데이터를 삭제하는 함수
+ - Parameter datasList: [NSManagedObject] 형식의 데이터로 삭제할 데이터가 들어있는 Array
+ */
 func deleteCoreData(datasList: [NSManagedObject]) {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
     let managedContext = appDelegate.persistentContainer.viewContext

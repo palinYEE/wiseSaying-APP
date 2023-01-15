@@ -15,12 +15,16 @@ class detailWiseSayingViewController: UIViewController {
     
     var keyboardUpFlag: Bool = false
     
-    /* 화면 터치시 키보드가 내려가게 */
+    /**
+     화면 터치시 키보드가 내려가게 하는 함수
+     */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    // 노티피케이션을 추가하는 메서드
+    /**
+     노티피케이션을 추가하는 함수
+     */
     func addKeyboardNotifications(){
         // 키보드가 나타날 때 앱에게 알리는 메서드 추가
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
@@ -28,7 +32,9 @@ class detailWiseSayingViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    // 키보드가 나타났다는 알림을 받으면 실행할 메서드
+    /**
+     키보드가 나타났다는 알림을 받으면 실행할 함수
+     */
     @objc func keyboardWillShow(_ noti: NSNotification){
         // 키보드의 높이만큼 화면을 올려준다.
         if !self.keyboardUpFlag{
@@ -41,7 +47,9 @@ class detailWiseSayingViewController: UIViewController {
         }
     }
 
-    // 키보드가 사라졌다는 알림을 받으면 실행할 메서드
+    /**
+     키보드가 사라졌다는 알림을 받으면 실행할 함수
+     */
     @objc func keyboardWillHide(_ noti: NSNotification){
         // 키보드의 높이만큼 화면을 내려준다.
         if self.keyboardUpFlag {
@@ -54,7 +62,9 @@ class detailWiseSayingViewController: UIViewController {
         }
     }
 
-    // 노티피케이션을 제거하는 메서드
+    /**
+     노티피케이션을 제거하는 함수
+     */
     func removeKeyboardNotifications(){
         // 키보드가 나타날 때 앱에게 알리는 메서드 제거
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
