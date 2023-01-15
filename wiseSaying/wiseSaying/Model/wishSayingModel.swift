@@ -7,6 +7,9 @@
 
 import Foundation
 
+let buttonHideConstant: CGFloat = 100
+let buttonShowConstant: CGFloat = 0
+
 struct wiseSayingModel {
     var bodyText: String = ""   /* 명언 내용 */
     var author: String = ""     /* 명언 작성자 */

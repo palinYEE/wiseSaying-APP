@@ -82,12 +82,7 @@ class detailWiseSayingViewController: UIViewController {
 
     
     @IBAction func finishButton(_ sender: Any) {
-        // App Delegate 호출
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-            
-        // App Delegate 내부에 있는 viewContext 호출
-        let managedContext = appDelegate.persistentContainer.viewContext
-            
+        guard let managedContext = createAppDelegateViewContext() else {return}
         // managedContext 내부에 있는 entity 호출
         let entity = NSEntityDescription.entity(forEntityName: "UserData", in: managedContext)!
         
