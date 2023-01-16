@@ -15,7 +15,8 @@ class detailWiseSayingViewController: UIViewController {
     @IBOutlet weak var titleField: UITextField!
     var placeholderLabel : UILabel!
     
-    var keyboardUpFlag: Bool = false
+    var keyboardUpFlag: Bool = true
+    var authorFieldEditing: Bool = false
     
     /**
      UITextView 에 Placeholder 셋팅하는 함수
@@ -53,7 +54,7 @@ class detailWiseSayingViewController: UIViewController {
      */
     @objc func keyboardWillShow(_ noti: NSNotification){
         // 키보드의 높이만큼 화면을 올려준다.
-        if !self.keyboardUpFlag{
+        if !self.keyboardUpFlag && self.authorFieldEditing {
             if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
                 let keyboardRectangle = keyboardFrame.cgRectValue
                 let keyboardHeight = keyboardRectangle.height
@@ -68,12 +69,12 @@ class detailWiseSayingViewController: UIViewController {
      */
     @objc func keyboardWillHide(_ noti: NSNotification){
         // 키보드의 높이만큼 화면을 내려준다.
-        if self.keyboardUpFlag {
+        if self.keyboardUpFlag && self.authorFieldEditing {
             if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
                 let keyboardRectangle = keyboardFrame.cgRectValue
                 let keyboardHeight = keyboardRectangle.height
                 self.view.frame.origin.y += keyboardHeight
-                self.keyboardUpFlag = false
+                self.authorFieldEditing = false
             }
         }
     }
@@ -118,9 +119,15 @@ class detailWiseSayingViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc func selectAuthorTextField(_ sender:Any?){
+        self.keyboardUpFlag = false
+        self.authorFieldEditing = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         textViewPlaceholder()
+        self.authorField.addTarget(self, action: #selector(selectAuthorTextField(_:)), for: .editingDidBegin)
 
     }
 }
