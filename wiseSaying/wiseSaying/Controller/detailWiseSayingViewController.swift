@@ -13,9 +13,24 @@ class detailWiseSayingViewController: UIViewController {
     @IBOutlet weak var bodyField: UITextView!
     @IBOutlet weak var authorField: UITextField!
     @IBOutlet weak var titleField: UITextField!
+    var placeholderLabel : UILabel!
     
     var keyboardUpFlag: Bool = false
     
+    /**
+     UITextView 에 Placeholder 셋팅하는 함수
+     */
+    func textViewPlaceholder(){
+        bodyField.delegate = self
+        placeholderLabel = UILabel()
+        placeholderLabel.text = "명언을 입력해 주세요..."
+        placeholderLabel.font = .italicSystemFont(ofSize: (bodyField.font?.pointSize)!)
+        placeholderLabel.sizeToFit()
+        bodyField.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: (bodyField.font?.pointSize)! / 2)
+        placeholderLabel.textColor = .tertiaryLabel
+        placeholderLabel.isHidden = !bodyField.text.isEmpty
+    }
     /**
      화면 터치시 키보드가 내려가게 하는 함수
      */
@@ -105,6 +120,13 @@ class detailWiseSayingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        textViewPlaceholder()
 
+    }
+}
+
+extension detailWiseSayingViewController : UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !textView.text.isEmpty
     }
 }

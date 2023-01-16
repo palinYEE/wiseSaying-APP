@@ -236,7 +236,7 @@
                                     <action selector="finishButton:" destination="rsC-WU-jZW" eventType="touchUpInside" id="p5K-AX-8za"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="명언을 입력하는 란입니다." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3Gk-D6-u9V">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3Gk-D6-u9V">
                                 <rect key="frame" x="20" y="157" width="353" height="507"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
