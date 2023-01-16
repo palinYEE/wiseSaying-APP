@@ -12,6 +12,7 @@ class showDetailWishSayingViewController: UIViewController {
     var senderDateString: String = ""
     var senderAuthor: String = ""
     var senderBody: String = ""
+    var senderTitle: String = ""
 
     @IBOutlet weak var dateString: UILabel! {
         didSet {
@@ -26,6 +27,11 @@ class showDetailWishSayingViewController: UIViewController {
     @IBOutlet weak var body: UILabel! {
         didSet {
             body.text = senderBody
+        }
+    }
+    @IBOutlet weak var Showtitle: UILabel! {
+        didSet {
+            Showtitle.text = senderTitle
         }
     }
     

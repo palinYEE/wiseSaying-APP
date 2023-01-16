@@ -10,8 +10,9 @@ import CoreData
 
 class detailWiseSayingViewController: UIViewController {
 
+    @IBOutlet weak var bodyField: UITextView!
     @IBOutlet weak var authorField: UITextField!
-    @IBOutlet weak var bodyField: UITextField!
+    @IBOutlet weak var titleField: UITextField!
     
     var keyboardUpFlag: Bool = false
     
@@ -92,6 +93,7 @@ class detailWiseSayingViewController: UIViewController {
         object.setValue(authorField.text ?? "", forKey: "author")
         object.setValue(UUID(), forKey: "uuid")
         object.setValue(Date(), forKey: "date")
+        object.setValue(titleField.text ?? "", forKey: "wiseTitle")
         
         do {
             try managedContext.save()

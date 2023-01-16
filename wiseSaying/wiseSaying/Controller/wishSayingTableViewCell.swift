@@ -10,7 +10,7 @@ import UIKit
 class wishSayingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var dateString: UILabel!
+    @IBOutlet weak var wiseTitle: UILabel!
     @IBOutlet weak var author: UILabel!
-    @IBOutlet weak var body: UILabel!
 
 }

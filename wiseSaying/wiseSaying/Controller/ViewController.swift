@@ -101,6 +101,7 @@ class ViewController: UIViewController {
             vc.senderDateString = convert(date: date!)
             vc.senderAuthor = (mainDatas[indexPath.row].value(forKey: "author") as? String)!
             vc.senderBody = (mainDatas[indexPath.row].value(forKey: "body") as? String)!
+            vc.senderTitle = (mainDatas[indexPath.row].value(forKey: "wiseTitle") as? String)!
         }
     }
     
@@ -150,7 +151,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "wishSayingTableViewCell", for: indexPath) as! wishSayingTableViewCell
         cell.author.text = mainDatas[indexPath.row].value(forKey: "author") as? String
-        cell.body.text = mainDatas[indexPath.row].value(forKey: "body") as? String
+        cell.wiseTitle.text = mainDatas[indexPath.row].value(forKey: "wiseTitle") as? String
         let date = mainDatas[indexPath.row].value(forKey: "date") as? Date
         cell.dateString.text = convert(date: date!)
         
