@@ -196,5 +196,24 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
       return true
     }
+    
+    /**
+     UITableViewCell swipe action function
+     */
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let favouriteaction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
+            self!.performSegue(withIdentifier: "modifyDetailWiseSaying", sender: indexPath)
+            completionHandler(true)
+        }
+        favouriteaction.backgroundColor = .systemBlue
+        let deleteaction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
+            deleteCoreData(datasList: [self!.mainDatas[indexPath.row]])
+            self?.mainDatas.remove(at: indexPath.row)
+            completionHandler(true)
+            self!.wiseSayingTableView.reloadData()
+        }
+        deleteaction.backgroundColor = .systemRed
+        return UISwipeActionsConfiguration(actions: [favouriteaction, deleteaction])
+    }
 
 }
