@@ -102,6 +102,13 @@ class ViewController: UIViewController {
             vc.senderAuthor = (mainDatas[indexPath.row].value(forKey: "author") as? String)!
             vc.senderBody = (mainDatas[indexPath.row].value(forKey: "body") as? String)!
             vc.senderTitle = (mainDatas[indexPath.row].value(forKey: "wiseTitle") as? String)!
+        } else if segue.identifier == "modifyDetailWiseSaying" {
+            let vc = segue.destination as! modifyDetailViewController
+            let indexPath = sender as! IndexPath
+            vc.uuid = mainDatas[indexPath.row].value(forKey: "uuid") as! CVarArg
+            vc.senderAuthor = (mainDatas[indexPath.row].value(forKey: "author") as? String)!
+            vc.senderBody = (mainDatas[indexPath.row].value(forKey: "body") as? String)!
+            vc.senderTitle = (mainDatas[indexPath.row].value(forKey: "wiseTitle") as? String)!
         }
     }
     

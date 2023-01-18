@@ -73,6 +73,63 @@ func deleteCoreData(datasList: [NSManagedObject]) {
 }
 
 /**
+ CoreData에서 데이터를 만드는 함수
+ - Parameters:
+    - author: (String) 저자 데이터
+    - body: (String) 명언 본문 데이터
+    - title: (String) 명언 제목 데이터
+ */
+func createCoreData(author: String, body: String, title: String) {
+    guard let managedContext = createAppDelegateViewContext() else {return}
+    // managedContext 내부에 있는 entity 호출
+    let entity = NSEntityDescription.entity(forEntityName: "UserData", in: managedContext)!
+    
+    // entity 객체 생성
+    let object = NSManagedObject(entity: entity, insertInto: managedContext)
+    object.setValue(body, forKey: "body")
+    object.setValue(author, forKey: "author")
+    object.setValue(UUID(), forKey: "uuid")
+    object.setValue(Date(), forKey: "date")
+    object.setValue(title, forKey: "wiseTitle")
+    
+    do {
+        try managedContext.save()
+    } catch let error as NSError {
+        print("Could not save. \(error), \(error.userInfo)")
+    }
+}
+
+/**
+ CoreData에서 데이터를 업데이트 하는 함수
+ - Parameters:
+    - uuid: (CVarArg) 업데이트할 데이터 uuid
+    - author: (String) 변경할 저자 데이터
+    - body: (String) 변경할 명언 본문 데이터
+    - title: (String) 변경할 명언 제목 데이터
+ */
+func updateCoreData(uuid: CVarArg, author: String, body: String, title: String) {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    let managedContext = appDelegate.persistentContainer.viewContext
+    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "UserData")
+    fetchRequest.predicate = NSPredicate(format: "uuid = %@", uuid)
+    
+    do {
+        let newData = try managedContext.fetch(fetchRequest)
+        let objectUpdate = newData[0] as! NSManagedObject
+        objectUpdate.setValue(body, forKey: "body")
+        objectUpdate.setValue(author, forKey: "author")
+        objectUpdate.setValue(title, forKey: "wiseTitle")
+        do {
+            try managedContext.save()
+        } catch {
+            print(error)
+        }
+    } catch {
+        print(error)
+    }
+}
+
+/**
  버튼 생성 시 title 및 color 셋팅하는 함수
  - Parameters
     - button: inout UIButton 객체로 title, color 를 셋팅할 버튼 객체
