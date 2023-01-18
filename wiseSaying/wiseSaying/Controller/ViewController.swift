@@ -217,7 +217,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             deleteCoreData(datasList: [self!.mainDatas[indexPath.row]])
             self?.mainDatas.remove(at: indexPath.row)
             completionHandler(true)
-            self!.wiseSayingTableView.reloadData()
+            self!.wiseSayingTableView.deleteRows(at: [indexPath], with: .left)
         }
         deleteaction.backgroundColor = .systemRed
         return UISwipeActionsConfiguration(actions: [favouriteaction, deleteaction])
