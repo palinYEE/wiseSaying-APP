@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class ViewController: UIViewController {
     
@@ -146,6 +147,9 @@ class ViewController: UIViewController {
         navigationBarSetting()
         tableViewSetting()
         makeButton()
+
+//        UNUserNotificationCenter.current().requestAuthorization(options: UNAuthorizationOptions, completionHandler: (Bool, Error?) -> Void)
+
         // Do any additional setup after loading the view.
     }
 }
