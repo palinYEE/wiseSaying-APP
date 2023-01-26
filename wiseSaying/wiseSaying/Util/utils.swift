@@ -89,7 +89,8 @@ func createCoreData(author: String, body: String, title: String) {
     object.setValue(body, forKey: "body")
     object.setValue(author, forKey: "author")
     object.setValue(UUID(), forKey: "uuid")
-    object.setValue(Date(), forKey: "date")
+    object.setValue(Date(), forKey: "createDate")
+    object.setValue(Date(), forKey: "recentDate")
     object.setValue(title, forKey: "wiseTitle")
     
     do {
@@ -119,6 +120,7 @@ func updateCoreData(uuid: CVarArg, author: String, body: String, title: String) 
         objectUpdate.setValue(body, forKey: "body")
         objectUpdate.setValue(author, forKey: "author")
         objectUpdate.setValue(title, forKey: "wiseTitle")
+        objectUpdate.setValue(Date(), forKey: "recentDate")
         do {
             try managedContext.save()
         } catch {

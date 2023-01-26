@@ -163,8 +163,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "wishSayingTableViewCell", for: indexPath) as! wishSayingTableViewCell
         cell.author.text = mainDatas[indexPath.row].value(forKey: "author") as? String
         cell.wiseTitle.text = mainDatas[indexPath.row].value(forKey: "wiseTitle") as? String
-        let date = mainDatas[indexPath.row].value(forKey: "date") as? Date
-        cell.dateString.text = convert(date: date!)
+        if let date = mainDatas[indexPath.row].value(forKey: "recentDate") as? Date {
+            cell.dateString.text = convert(date: date)
+        } else {
+            cell.dateString.text = ""
+        }
+        
         
         if self.isEditing {
              self.wiseSayingTableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.none)
