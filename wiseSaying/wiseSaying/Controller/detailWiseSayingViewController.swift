@@ -13,8 +13,9 @@ class detailWiseSayingViewController: UIViewController {
     @IBOutlet weak var bodyField: UITextView!
     @IBOutlet weak var authorField: UITextField!
     @IBOutlet weak var titleField: UITextField!
-    var placeholderLabel : UILabel!
+    @IBOutlet weak var repeatTimeTextField: UITextField!
     
+    var placeholderLabel : UILabel!
     var keyboardUpFlag: Bool = true
     var authorFieldEditing: Bool = false
     
@@ -89,6 +90,7 @@ class detailWiseSayingViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         self.addKeyboardNotifications()
     }
@@ -110,16 +112,51 @@ class detailWiseSayingViewController: UIViewController {
         self.authorFieldEditing = true
     }
     
+    @objc func tapDone() {
+        if let datePicker = self.repeatTimeTextField.inputView as? UIDatePicker { // 2-1
+            let dateformatter = DateFormatter() // 2-2
+            dateformatter.dateStyle = .medium // 2-3
+            self.repeatTimeTextField.text = dateformatter.string(from: datePicker.date) //2-4
+        }
+        self.repeatTimeTextField.resignFirstResponder() // 2-5
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         textViewPlaceholder()
         self.authorField.addTarget(self, action: #selector(selectAuthorTextField(_:)), for: .editingDidBegin)
-
+        self.repeatTimeTextField.setInputViewDatePicker(target: self, selector: #selector(tapDone))
     }
 }
 
 extension detailWiseSayingViewController : UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
+    }
+}
+
+extension UITextField {
+    func setInputViewDatePicker(target: Any, selector: Selector) {
+        // UIDatePicker 오브젝트 선언 및 위치 셋팅
+        let screenWidth = UIScreen.main.bounds.width
+        let datePicker = UIDatePicker(frame: CGRect(x: 0, y:0 , width: screenWidth, height: 216))
+        datePicker.datePickerMode = .date
+        
+        if #available(iOS 14, *) {
+//            datePicker.preferredDatePickerStyle = .wheels
+            datePicker.sizeToFit()
+        }
+        self.inputView = datePicker
+        // 툴바 생성 및 inputAccessoryView 에 등록
+        let toolBar = UIToolbar(frame: CGRect(x: 0.0, y: 0.0, width: screenWidth, height: 44.0)) //4
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil) //5
+        let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: #selector(tapCancel)) // 6
+        let barButton = UIBarButtonItem(title: "Done", style: .plain, target: target, action: selector) //7
+        toolBar.setItems([cancel, flexible, barButton], animated: false) //8
+        self.inputAccessoryView = toolBar //9
+        
+    }
+    @objc func tapCancel() {
+        self.resignFirstResponder()
     }
 }

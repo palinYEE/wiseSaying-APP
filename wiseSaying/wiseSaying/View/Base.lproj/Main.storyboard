@@ -234,26 +234,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="명언 저자 입력" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7t-CX-gBf">
-                                <rect key="frame" x="20" y="684" width="101" height="34"/>
+                                <rect key="frame" x="20" y="627" width="101" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="101" id="2Ty-2c-itx"/>
-                                    <constraint firstAttribute="height" constant="34" id="3BR-pd-3CI"/>
+                                    <constraint firstAttribute="height" constant="34" id="Eec-o4-9Hd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="명언 저자를 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsf-pk-gdf">
-                                <rect key="frame" x="144" y="684" width="229" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="CTB-bw-qVV"/>
-                                    <constraint firstAttribute="width" constant="229" id="FdE-fP-QVl"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgn-Lt-Xo4">
-                                <rect key="frame" x="20" y="738" width="353" height="40"/>
+                                <rect key="frame" x="20" y="743.66666666666663" width="353" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="완료"/>
                                 <connections>
@@ -261,8 +252,11 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3Gk-D6-u9V">
-                                <rect key="frame" x="20" y="157" width="353" height="507"/>
+                                <rect key="frame" x="20" y="157" width="353" height="450"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="450" id="kRF-9R-zZk"/>
+                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -276,23 +270,57 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="반복 날짜 설정" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHK-5C-aro">
+                                <rect key="frame" x="20" y="681" width="101" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="EhL-Rl-zua"/>
+                                    <constraint firstAttribute="width" constant="101" id="goV-Os-h2T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="명언 저자를 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsf-pk-gdf">
+                                <rect key="frame" x="144" y="627" width="229" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="CTB-bw-qVV"/>
+                                    <constraint firstAttribute="width" constant="229" id="FdE-fP-QVl"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="RER-ZV-K6d"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="229" id="UAx-nL-Scj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="반복 날짜를 입력해주세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qVd-1S-R0A">
+                                <rect key="frame" x="144" y="681" width="229" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="MDL-0G-mAb"/>
+                                    <constraint firstAttribute="width" constant="229" id="dKG-lv-hVo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5Kg-0c-r8c"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="5Kg-0c-r8c" firstAttribute="trailing" secondItem="MBV-r5-Zib" secondAttribute="trailing" constant="20" id="0Iz-0H-cK0"/>
-                            <constraint firstItem="tgn-Lt-Xo4" firstAttribute="top" secondItem="r7t-CX-gBf" secondAttribute="bottom" constant="20" id="3Sb-Di-qXS"/>
-                            <constraint firstItem="5Kg-0c-r8c" firstAttribute="bottom" secondItem="r7t-CX-gBf" secondAttribute="bottom" constant="100" id="3Xk-LS-ag3"/>
+                            <constraint firstItem="Vsf-pk-gdf" firstAttribute="top" secondItem="3Gk-D6-u9V" secondAttribute="bottom" constant="20" id="2pX-KA-253"/>
                             <constraint firstItem="5Kg-0c-r8c" firstAttribute="trailing" secondItem="Vsf-pk-gdf" secondAttribute="trailing" constant="20" id="52V-OK-ERf"/>
+                            <constraint firstItem="IHK-5C-aro" firstAttribute="leading" secondItem="5Kg-0c-r8c" secondAttribute="leading" constant="20" id="9N3-sz-gRb"/>
                             <constraint firstItem="5Kg-0c-r8c" firstAttribute="trailing" secondItem="tgn-Lt-Xo4" secondAttribute="trailing" constant="20" id="Gca-Wf-2E0"/>
                             <constraint firstItem="MBV-r5-Zib" firstAttribute="top" secondItem="5Kg-0c-r8c" secondAttribute="top" id="Gp9-5k-Al9"/>
-                            <constraint firstItem="5Kg-0c-r8c" firstAttribute="bottom" secondItem="Vsf-pk-gdf" secondAttribute="bottom" constant="100" id="J6O-Ka-l0m"/>
+                            <constraint firstItem="IHK-5C-aro" firstAttribute="top" secondItem="r7t-CX-gBf" secondAttribute="bottom" constant="20" id="HiW-NQ-svK"/>
                             <constraint firstItem="3Gk-D6-u9V" firstAttribute="leading" secondItem="5Kg-0c-r8c" secondAttribute="leading" constant="20" id="P9W-34-UQX"/>
                             <constraint firstItem="5Kg-0c-r8c" firstAttribute="bottom" secondItem="tgn-Lt-Xo4" secondAttribute="bottom" constant="40" id="PNc-BH-oW4"/>
+                            <constraint firstItem="5Kg-0c-r8c" firstAttribute="trailing" secondItem="Vsf-pk-gdf" secondAttribute="trailing" constant="20" id="RGI-aD-bPl"/>
                             <constraint firstItem="MBV-r5-Zib" firstAttribute="leading" secondItem="5Kg-0c-r8c" secondAttribute="leading" constant="20" id="RwP-WA-j9r"/>
                             <constraint firstItem="5Kg-0c-r8c" firstAttribute="trailing" secondItem="3Gk-D6-u9V" secondAttribute="trailing" constant="20" id="TWS-UV-GtG"/>
                             <constraint firstItem="tgn-Lt-Xo4" firstAttribute="leading" secondItem="5Kg-0c-r8c" secondAttribute="leading" constant="20" id="Xlc-jn-XJN"/>
                             <constraint firstItem="3Gk-D6-u9V" firstAttribute="top" secondItem="MBV-r5-Zib" secondAttribute="bottom" constant="20" id="Yzy-1y-QJ8"/>
+                            <constraint firstItem="qVd-1S-R0A" firstAttribute="top" secondItem="Vsf-pk-gdf" secondAttribute="bottom" constant="20" id="cFy-hv-4zU"/>
+                            <constraint firstItem="5Kg-0c-r8c" firstAttribute="trailing" secondItem="qVd-1S-R0A" secondAttribute="trailing" constant="20" id="cja-VO-ur3"/>
+                            <constraint firstItem="Vsf-pk-gdf" firstAttribute="top" secondItem="3Gk-D6-u9V" secondAttribute="bottom" constant="20" id="eWp-6i-mkl"/>
                             <constraint firstItem="r7t-CX-gBf" firstAttribute="top" secondItem="3Gk-D6-u9V" secondAttribute="bottom" constant="20" id="jkc-Bb-LJl"/>
                             <constraint firstItem="r7t-CX-gBf" firstAttribute="leading" secondItem="5Kg-0c-r8c" secondAttribute="leading" constant="20" id="sV9-0i-0ZY"/>
                         </constraints>
@@ -301,6 +329,7 @@
                     <connections>
                         <outlet property="authorField" destination="Vsf-pk-gdf" id="6hc-CK-YNZ"/>
                         <outlet property="bodyField" destination="3Gk-D6-u9V" id="0L0-h2-Hte"/>
+                        <outlet property="repeatTimeTextField" destination="qVd-1S-R0A" id="pIw-mP-Qzx"/>
                         <outlet property="titleField" destination="MBV-r5-Zib" id="eN0-MN-Jrt"/>
                     </connections>
                 </viewController>
