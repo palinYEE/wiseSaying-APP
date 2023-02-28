@@ -98,7 +98,7 @@ class ViewController: UIViewController {
         if segue.identifier == "showDetailWiseSaying" {
             let vc = segue.destination as! showDetailWishSayingViewController
             let indexPath = sender as! IndexPath
-            let date = mainDatas[indexPath.row].value(forKey: "date") as? Date
+            let date = mainDatas[indexPath.row].value(forKey: "recentDate") as? Date
             vc.senderDateString = convert(date: date!)
             vc.senderAuthor = (mainDatas[indexPath.row].value(forKey: "author") as? String)!
             vc.senderBody = (mainDatas[indexPath.row].value(forKey: "body") as? String)!

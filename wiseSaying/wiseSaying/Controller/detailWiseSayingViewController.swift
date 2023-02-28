@@ -139,14 +139,25 @@ extension UITextField {
     func setInputViewDatePicker(target: Any, selector: Selector) {
         // UIDatePicker 오브젝트 선언 및 위치 셋팅
         let screenWidth = UIScreen.main.bounds.width
-        let datePicker = UIDatePicker(frame: CGRect(x: 0, y:0 , width: screenWidth, height: 216))
-        datePicker.datePickerMode = .date
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .dateAndTime
+        datePicker.preferredDatePickerStyle = .inline
+        let rect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 500)
+        let pickerWrapperView = UIView(frame: rect)
+        pickerWrapperView.addSubview(datePicker)
+        
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.leadingAnchor.constraint(equalTo: pickerWrapperView.leadingAnchor).isActive = true
+        datePicker.trailingAnchor.constraint(equalTo: pickerWrapperView.trailingAnchor).isActive = true
+        datePicker.topAnchor.constraint(equalTo: pickerWrapperView.topAnchor).isActive = true
+        datePicker.bottomAnchor.constraint(equalTo: pickerWrapperView.bottomAnchor).isActive = true
+    
         
         if #available(iOS 14, *) {
 //            datePicker.preferredDatePickerStyle = .wheels
             datePicker.sizeToFit()
         }
-        self.inputView = datePicker
+        self.inputView = pickerWrapperView
         // 툴바 생성 및 inputAccessoryView 에 등록
         let toolBar = UIToolbar(frame: CGRect(x: 0.0, y: 0.0, width: screenWidth, height: 44.0)) //4
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil) //5
@@ -154,7 +165,7 @@ extension UITextField {
         let barButton = UIBarButtonItem(title: "Done", style: .plain, target: target, action: selector) //7
         toolBar.setItems([cancel, flexible, barButton], animated: false) //8
         self.inputAccessoryView = toolBar //9
-        
+//
     }
     @objc func tapCancel() {
         self.resignFirstResponder()
