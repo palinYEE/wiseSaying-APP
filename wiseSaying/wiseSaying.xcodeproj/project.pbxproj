@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		12E8073B5E69A910662E3EEC /* Pods_wiseSaying.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30F7B503E4F189CA59BBCBD /* Pods_wiseSaying.framework */; };
 		6422E0582965A9C70085525A /* wishSayingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422E0572965A9C70085525A /* wishSayingModel.swift */; };
 		6422E05B2965ABB70085525A /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422E05A2965ABB70085525A /* utils.swift */; };
 		6460A01A29610D4C00260802 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6460A01929610D4C00260802 /* AppDelegate.swift */; };
@@ -82,7 +81,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12E8073B5E69A910662E3EEC /* Pods_wiseSaying.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +205,6 @@
 				0578417370447F25B5E245EB /* Pods-wiseSayingTests.debug.xcconfig */,
 				33515071A04EE86428334E34 /* Pods-wiseSayingTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
